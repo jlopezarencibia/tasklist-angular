@@ -1,5 +1,5 @@
 <ng-container *ngIf='type === "regular"; else tag'>
-  <span (click)='emit()'>{{text}}</span>
+  <span (click)='emit()'>{{text}}&nbsp;</span>
 </ng-container>
 <ng-template #tag>
   <span class='tag fw-bold' (click)='emit()'

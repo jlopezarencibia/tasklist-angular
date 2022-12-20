@@ -20,6 +20,7 @@ export class TodoItemComponent implements OnInit {
   @Output() whenAddTask = new EventEmitter<TodoTaskDto>();
   @Output() whenRemoveTask = new EventEmitter<TodoTaskDto>();
   @Output() whenUpdateTask = new EventEmitter<TodoTaskDto>();
+  @Output() whenCancel = new EventEmitter();
   @Output() clicked = new EventEmitter();
 
 
@@ -75,7 +76,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   async action() {
-    this.clicked.emit();
+    // this.clicked.emit();
     switch (this.mode) {
       case EditorMode.edit: {
         if (this.textInput == '') {
@@ -101,6 +102,7 @@ export class TodoItemComponent implements OnInit {
           console.log('Add task');
           const data = await firstValueFrom(this.taskService.create(this.textInput, Date.now().toString()));
           this.whenAddTask.emit(data);
+          console.log('emitted!');
           this.textInput = '';
           this.switchToNewMode();
           break;
@@ -121,6 +123,7 @@ export class TodoItemComponent implements OnInit {
         this.switchToDisplayMode();
         break;
     }
+    this.whenCancel.emit();
   }
 
   doSave() {

@@ -4,8 +4,12 @@
     <div *ngIf='tasks' class='rounded-pill bg-gray px-2 py-1'>Tasks: <b>{{tasks.length}}</b></div>
   </div>
   <div class='divider mt-1 mb-3'></div>
-  <div #todoList *ngIf='tasks'>
-    <app-todo-item [mode]='newMode' (clicked)='this.editorOpened = true' (whenAddTask)='addNewTask($event)'></app-todo-item>
-    <app-todo-item [mode]='viewMode' *ngFor='let task of tasks' [task]='task' (whenRemoveTask)='removeTask($event)' (whenUpdateTask)='updateTask($event)'></app-todo-item>
+  <div #todoList [abpLoading]='!tasks'>
+    <ng-container *ngIf='tasks'>
+      <app-todo-item [mode]='newMode' *ngIf='!editorOpened'
+                     (whenAddTask)='addNewTask($event)' (whenCancel)='toggleEditor(false)'></app-todo-item>
+      <app-todo-item [mode]='viewMode' *ngFor='let task of tasks;' [task]='task' (whenRemoveTask)='removeTask($event)'
+                     (whenUpdateTask)='updateTask($event)' (whenCancel)='toggleEditor(false)'></app-todo-item>
+    </ng-container>
   </div>
 </div>

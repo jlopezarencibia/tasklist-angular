@@ -9,12 +9,11 @@ import { EditorMode } from './todo-item/todo-item.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   tasks: TodoTaskDto[];
-
   // flags
   editorOpened = false;
 
@@ -33,10 +32,12 @@ export class HomeComponent implements OnInit{
   constructor(
     private oAuthService: OAuthService,
     private authService: AuthService,
-    private taskService: TaskService) {}
+    private taskService: TaskService) {
+  }
 
   async ngOnInit() {
     this.tasks = await firstValueFrom(this.taskService.getList());
+    this.tasks = this.tasks.reverse();
   }
 
   login() {
@@ -44,7 +45,15 @@ export class HomeComponent implements OnInit{
   }
 
   toggleEditor(value?: boolean) {
+    // console.log('set editor to => ', value != undefined ? value : !this.editorOpened);
     this.editorOpened = value != undefined ? value : !this.editorOpened;
+  }
+
+  openEditor(index: number) {
+    // console.log('open editor');
+    // this.refreshEditorArray();
+    // this.taskView[index] = true;
+    this.editorOpened = true;
   }
 
   // When clicked on the new item button
@@ -52,22 +61,25 @@ export class HomeComponent implements OnInit{
     if (value) {
       this.tasks.unshift(value);
     }
+    this.toggleEditor(false);
   }
 
   removeTask(value: TodoTaskDto) {
     for (let i = 0; i < this.tasks.length; i++) {
-      if(this.tasks[i].id === value.id) {
+      if (this.tasks[i].id === value.id) {
         this.tasks.splice(i, 1);
         break;
       }
     }
+    this.toggleEditor(false)
   }
 
   updateTask(value: TodoTaskDto) {
     for (const task of this.tasks) {
       if (task.id === value.id) {
-        task.value = value.value
+        task.value = value.value;
       }
     }
+    this.toggleEditor(false)
   }
 }
