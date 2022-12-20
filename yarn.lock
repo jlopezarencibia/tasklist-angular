@@ -2465,6 +2465,13 @@ ajv@^8.0.0, ajv@^8.10.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+angular-feather@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/angular-feather/-/angular-feather-6.5.0.tgz#d78232920921fe957394d679571c217a705a500e"
+  integrity sha512-6g8ZDwQ6tMBOmv+2L5U0+zvrgCIxrOF440EmMGC5QmrVFURLkWJofERlpXR/JvKEjk0/hWZGw19mrv7ez0oL9A==
+  dependencies:
+    tslib "^2.0.0"
+
 angular-oauth2-oidc@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/angular-oauth2-oidc/-/angular-oauth2-oidc-13.0.1.tgz#81a001b19452d19b1972035d742b777d75ef34fa"

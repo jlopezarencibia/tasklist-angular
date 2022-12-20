@@ -1,0 +1,9 @@
+<ng-container *ngIf='type === "regular"; else tag'>
+  <span (click)='emit()'>{{text}}</span>
+</ng-container>
+<ng-template #tag>
+  <span class='tag fw-bold' (click)='emit()'
+        [ngClass]='{"tag-at": type === "mention","tag-hash": type === "hashtag", "tag-email": type === "email", "tag-url": type === "url"}'>
+  <feather-icon class='ic-small' [name]='getIcon()'></feather-icon> {{text.trim()}}
+  </span>&nbsp;
+</ng-template>

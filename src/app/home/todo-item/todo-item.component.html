@@ -1,0 +1,60 @@
+<div class='p-2 d-flex clickable' *ngIf='mode === "new"' (click)='switchToAddMode()'>
+  <i-feather name='plus-square' class='ic text-blue me-2'></i-feather>
+  <span class='text-black-50'>Type to add new task...</span>
+</div>
+
+<div class='p-2 d-flex clickable' *ngIf='mode === "view"'>
+  <i-feather name='square' class='ic me-2'></i-feather>
+  <p class='mb-0' style='margin-top: 1px'>
+    <app-token *ngFor='let word of wordsArray' (userClicked)='tagClicked($event)' [text]='word'></app-token>
+  </p>
+  <div class='d-block flex-fill' (click)='switchToEditMode()'></div>
+</div>
+
+<div #NewItem class='card shadow' *ngIf='mode === "add" || mode === "edit"'>
+  <div class='card-body p-2 d-flex align-items-start'>
+    <i-feather [name]='mode === "edit" ? "chevron-right" : "plus-square"' class='ic text-blue me-2'></i-feather>
+    <div class='d-flex flex-column w-100'>
+      <textarea [(ngModel)]='textInput' [autofocus]='' (keydown)='keyInput($event)' class='w-100' placeholder='Type to add new task...'>
+      </textarea>
+    </div>
+    <img src='assets/images/logo/logo-light-thumbnail.png' alt=''
+         class='logo-small ms-2 bg-secondary rounded-circle p-1' [class.logo-small-disabled]='textInput === ""'>
+  </div>
+  <div class='card-footer bg-gray p-2 justify-content-between d-flex'>
+    <div class='d-flex align-items-center'>
+      <button class='btn btn-gray btn-sm me-3-custom d-flex align-items-center' [disabled]='textInput === ""'>
+        <i-feather name='maximize-2' class='ic me-1-custom'></i-feather>
+        <span class='will-hide'>Open</span>
+      </button>
+      <button class='btn btn-outlined-gray btn-sm d-flex align-items-center me-1' [disabled]='textInput === ""'>
+        <i-feather name='calendar' class='ic me-1-custom'></i-feather>
+        <span class='will-hide'>Calendar</span>
+      </button>
+      <button class='btn btn-outlined-gray btn-sm d-flex align-items-center me-1' [disabled]='textInput === ""'>
+        <i-feather name='unlock' class='ic me-1-custom'></i-feather>
+        <span class='will-hide'>Public</span>
+      </button>
+      <button class='btn btn-outlined-gray btn-sm d-flex align-items-center me-1' [disabled]='textInput === ""'>
+        <i-feather name='loader' class='ic me-1-custom'></i-feather>
+        <span class='will-hide'>Normal</span>
+      </button>
+      <button class='btn btn-outlined-gray btn-sm d-flex align-items-center me-1' [disabled]='textInput === ""'>
+        <span class='ic me-1-custom rounded-circle fw-light border'>0</span>
+        <span class='will-hide'>Estimation</span>
+      </button>
+    </div>
+    <div class='d-flex align-items-center'>
+      <button class='btn btn-sm btn-gray d-flex align-items-center me-1'  *ngIf='mode !== "edit" || isModified' (click)='doCancel()'>
+        <span>Cancel</span>
+      </button>
+      <button class='btn btn-sm btn-primary d-flex align-items-center' (click)='action()'>
+        <span *ngIf='mode === "add" && textInput === ""'>OK</span>
+        <span *ngIf='mode === "add" && textInput !== ""'>Add</span>
+        <i-feather *ngIf='mode === "edit" && isModified' name='save' class='ic'></i-feather>
+        <i-feather *ngIf='mode === "edit" && !isModified' name='x' class='ic'></i-feather>
+      </button>
+    </div>
+
+  </div>
+</div>
