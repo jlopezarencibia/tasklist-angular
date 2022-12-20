@@ -5,9 +5,12 @@
 
 <div class='p-2 d-flex clickable' *ngIf='mode === "view"'>
   <i-feather name='square' class='ic me-2'></i-feather>
-  <p class='mb-0' style='margin-top: 1px'>
-    <app-token *ngFor='let word of wordsArray' (userClicked)='tagClicked($event)' [text]='word'></app-token>
-  </p>
+  <div>
+    <p class='mb-0' style='margin-top: 1px'>
+      <app-token *ngFor='let word of wordsArray' (userClicked)='tagClicked($event)' [text]='word'></app-token>
+    </p>
+    <p class='m-0 lh-1 small text-muted'>{{task.creationDate | date}}</p>
+  </div>
   <div class='d-block flex-fill' (click)='switchToEditMode()'></div>
 </div>
 
@@ -15,7 +18,8 @@
   <div class='card-body p-2 d-flex align-items-start'>
     <i-feather [name]='mode === "edit" ? "chevron-right" : "plus-square"' class='ic text-blue me-2'></i-feather>
     <div class='d-flex flex-column w-100'>
-      <textarea [(ngModel)]='textInput' [autofocus]='' (keydown)='keyInput($event)' class='w-100' placeholder='Type to add new task...'>
+      <textarea [(ngModel)]='textInput' [autofocus]='' (keydown)='keyInput($event)' class='w-100'
+                placeholder='Type to add new task...'>
       </textarea>
     </div>
     <img src='assets/images/logo/logo-light-thumbnail.png' alt=''
@@ -45,7 +49,8 @@
       </button>
     </div>
     <div class='d-flex align-items-center'>
-      <button class='btn btn-sm btn-gray d-flex align-items-center me-1'  *ngIf='mode !== "edit" || isModified' (click)='doCancel()'>
+      <button class='btn btn-sm btn-gray d-flex align-items-center me-1' *ngIf='mode !== "edit" || isModified'
+              (click)='doCancel()'>
         <span>Cancel</span>
       </button>
       <button class='btn btn-sm btn-primary d-flex align-items-center' (click)='action()'>

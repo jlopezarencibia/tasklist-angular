@@ -2472,6 +2472,14 @@ angular-feather@^6.5.0:
   dependencies:
     tslib "^2.0.0"
 
+angular-froala-wysiwyg@^4.0.16:
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/angular-froala-wysiwyg/-/angular-froala-wysiwyg-4.0.16.tgz#d10aa6e4f55020e974a35bcc8343e5ee5c980b21"
+  integrity sha512-JG0gS/NGqMHh9RWhX4NvL10Zw7HUfNtCxi4BJTzfYkXXbR7gnKUtX3edrkrPRLbqePSCOh4TQpfDarx7LM/B6g==
+  dependencies:
+    froala-editor "4.0.16"
+    tslib "^2.0.0"
+
 angular-oauth2-oidc@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/angular-oauth2-oidc/-/angular-oauth2-oidc-13.0.1.tgz#81a001b19452d19b1972035d742b777d75ef34fa"
@@ -4189,6 +4197,11 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==
+
+froala-editor@4.0.16, froala-editor@^4.0.16:
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-4.0.16.tgz#4ca4eb9e06fcdd09015a8c761e932b0f3d2a7b10"
+  integrity sha512-n1hXfgD/sWCdTVKJW9SPupeW6oQ25TO3hQuDaktdgPszyywe5Vpbxw0k+ffRs5pWSt/aHRiDaQnaxyb9YRA9Sg==
 
 fs-extra@^8.1.0:
   version "8.1.0"

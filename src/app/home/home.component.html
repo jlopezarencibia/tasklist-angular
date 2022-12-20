@@ -5,7 +5,7 @@
   </div>
   <div class='divider mt-1 mb-3'></div>
   <div #todoList *ngIf='tasks'>
-    <app-todo-item [mode]='newMode' (clicked)='this.editorOpened = true' (whenAddTask)='addNewTask($event)'></app-todo-item>
+    <app-todo-item [mode]='newMode' (whenAddTask)='addNewTask($event)'></app-todo-item>
     <app-todo-item [mode]='viewMode' *ngFor='let task of tasks' [task]='task' (whenRemoveTask)='removeTask($event)' (whenUpdateTask)='updateTask($event)'></app-todo-item>
   </div>
 </div>

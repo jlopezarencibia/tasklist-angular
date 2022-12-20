@@ -1,10 +1,11 @@
 import { AuthService } from '@abp/ng.core';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { TaskService } from '@proxy/services';
 import { firstValueFrom } from 'rxjs';
 import { TodoTaskDto } from '@proxy/services/dtos';
 import { EditorMode } from './todo-item/todo-item.component';
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,8 @@ export class HomeComponent implements OnInit{
 
   tasks: TodoTaskDto[];
 
+  @ViewChild('froala') froala: ElementRef;
   // flags
-  editorOpened = false;
 
   get newMode() {
     return EditorMode.new;
@@ -41,10 +42,6 @@ export class HomeComponent implements OnInit{
 
   login() {
     this.authService.navigateToLogin();
-  }
-
-  toggleEditor(value?: boolean) {
-    this.editorOpened = value != undefined ? value : !this.editorOpened;
   }
 
   // When clicked on the new item button
