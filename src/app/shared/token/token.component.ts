@@ -18,19 +18,60 @@ export class TokenComponent implements OnInit {
   readonly urlRegex = new RegExp('[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)', 'gi');
 
   ngOnInit(): void {
-    if (this.text.search(this.atRegex) != -1) {
+    if (this.isMention()) {
       this.type = WordType.mention;
-      this.text = this.text.replace('@', '');
-    } else if (this.text.search(this.hashRegex) != -1) {
+      this.text = this.trimAtSign();
+    } else if (this.isHashtag()) {
       this.type = WordType.hashtag;
-      this.text = this.text.replace('#', '');
-    } else if (this.text.search(this.emailRegex) != -1) {
+      this.text = this.trimHashSign();
+    } else if (this.isEmail()) {
       this.type = WordType.email;
-    } else if (this.text.search(this.urlRegex) != -1) {
+    } else if (this.isUrl()) {
       this.type = WordType.url;
-      this.text = this.text.replace('https://', '').replace('http://', '').replace('www.', '');
-
+      this.text = this.trimUrlPrefix();
     }
+  }
+
+  isMention(text?: string): boolean {
+    let source = text ? text : this.text;
+    const result = source.search(this.atRegex);
+    return result != -1;
+  }
+
+  isHashtag(text?: string): boolean {
+    let source = text ? text : this.text;
+    const result = source.search(this.hashRegex);
+    return result != -1;
+  }
+
+  isEmail(text?: string): boolean {
+    let source = text ? text : this.text;
+    const result = source.search(this.emailRegex);
+    return result != -1;
+  }
+
+  isUrl(text?: string): boolean {
+    let source = text ? text : this.text;
+    const result = source.search(this.urlRegex);
+    return result != -1;
+  }
+
+  trimAtSign(mention?: string) {
+    let source = mention ? mention : this.text;
+    return source.replace('@', '');
+  }
+
+  trimHashSign(hashtag?: string) {
+    let source = hashtag ? hashtag : this.text;
+    return source.replace('#', '');
+  }
+
+  trimUrlPrefix(url?: string) {
+    let source = url ? url : this.text;
+    return source
+      .replace('https://', '')
+      .replace('http://', '')
+      .replace('www.', '');
   }
 
   emit() {
