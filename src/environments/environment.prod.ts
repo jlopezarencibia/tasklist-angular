@@ -10,7 +10,7 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44354/',
+    issuer: 'https://localhost:44328/',
     redirectUri: baseUrl,
     clientId: 'App_App',
     responseType: 'code',
@@ -19,7 +19,7 @@ export const environment = {
   },
   apis: {
     default: {
-      url: 'https://localhost:44354',
+      url: 'https://localhost:44328',
       rootNamespace: 'TaskList.App',
     },
   },
